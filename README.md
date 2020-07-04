@@ -8,7 +8,7 @@
 
 # java.util.StringTokenizer for j2cl
 
-A complete StringTokenizer supporting all methods and features.
+A complete StringTokenizer supporting all methods and features, taken from [Apache Harmony project](https://github.com/apache/harmony/blob/trunk/classlib/modules/luni/src/main/java/java/util/StringTokenizer.java)
 
 
 
