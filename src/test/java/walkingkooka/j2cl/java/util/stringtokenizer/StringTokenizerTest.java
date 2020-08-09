@@ -18,15 +18,23 @@
 package walkingkooka.j2cl.java.util.stringtokenizer;
 
 import org.junit.jupiter.api.Test;
+import walkingkooka.javashader.ShadedClassTesting;
+import walkingkooka.predicate.Predicates;
 import walkingkooka.reflect.ClassTesting;
 import walkingkooka.reflect.JavaVisibility;
+import walkingkooka.reflect.PackageName;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public final class StringTokenizerTest implements ClassTesting<StringTokenizer> {
+public final class StringTokenizerTest implements ShadedClassTesting<StringTokenizer> {
 
     @Test
     public void testCountTokens() {
@@ -79,8 +87,26 @@ public final class StringTokenizerTest implements ClassTesting<StringTokenizer> 
         return StringTokenizer.class;
     }
 
+    // ShadedClassTesting................................................................................................
+
     @Override
-    public JavaVisibility typeVisibility() {
-        return JavaVisibility.PUBLIC;
+    public final Predicate<Constructor> requiredConstructors() {
+        return Predicates.always();
+    }
+
+    @Override
+    public final Predicate<Method> requiredMethods() {
+        return Predicates.always();
+    }
+
+    @Override
+    public final Predicate<Field> requiredFields() {
+        return Predicates.always();
+    }
+
+    @Override
+    public UnaryOperator<Class<?>> typeMapper() {
+        return ShadedClassTesting.typeMapper(PackageName.from(this.getClass().getPackage()),
+                PackageName.from(java.util.StringTokenizer.class.getPackage()));
     }
 }
