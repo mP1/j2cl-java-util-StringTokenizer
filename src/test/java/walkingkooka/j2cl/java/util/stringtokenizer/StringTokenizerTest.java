@@ -31,7 +31,6 @@ import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class StringTokenizerTest implements ShadedClassTesting<StringTokenizer> {
@@ -41,7 +40,7 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
         final String string = "a,b,c";
         final String delimiters = ",";
 
-        assertEquals(new java.util.StringTokenizer(string, delimiters).countTokens(), new StringTokenizer(string, delimiters).countTokens());
+        this.checkEquals(new java.util.StringTokenizer(string, delimiters).countTokens(), new StringTokenizer(string, delimiters).countTokens());
     }
 
     @Test
@@ -53,11 +52,11 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
         final StringTokenizer emul = new StringTokenizer(string, delimiters);
 
         for (int i = 0; i < 3; i++) {
-            assertEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
-            assertEquals(jre.nextToken(), emul.nextToken());
+            this.checkEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
+            this.checkEquals(jre.nextToken(), emul.nextToken());
         }
 
-        assertEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
+        this.checkEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
         assertThrows(NoSuchElementException.class, () -> jre.nextToken());
         assertThrows(NoSuchElementException.class, () -> emul.nextToken());
     }
@@ -71,11 +70,11 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
         final StringTokenizer emul = new StringTokenizer(string, delimiters);
 
         for (int i = 0; i < 3; i++) {
-            assertEquals(jre.hasMoreTokens(), emul.hasMoreElements());
-            assertEquals(jre.nextToken(), emul.nextToken());
+            this.checkEquals(jre.hasMoreTokens(), emul.hasMoreElements());
+            this.checkEquals(jre.nextToken(), emul.nextToken());
         }
 
-        assertEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
+        this.checkEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
         assertThrows(NoSuchElementException.class, () -> jre.nextElement());
         assertThrows(NoSuchElementException.class, () -> emul.nextElement());
     }
@@ -90,17 +89,17 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
     // ShadedClassTesting................................................................................................
 
     @Override
-    public final Predicate<Constructor> requiredConstructors() {
+    public Predicate<Constructor> requiredConstructors() {
         return Predicates.always();
     }
 
     @Override
-    public final Predicate<Method> requiredMethods() {
+    public Predicate<Method> requiredMethods() {
         return Predicates.always();
     }
 
     @Override
-    public final Predicate<Field> requiredFields() {
+    public Predicate<Field> requiredFields() {
         return Predicates.always();
     }
 
