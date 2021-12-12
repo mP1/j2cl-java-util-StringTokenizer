@@ -20,8 +20,6 @@ package walkingkooka.j2cl.java.util.stringtokenizer;
 import org.junit.jupiter.api.Test;
 import walkingkooka.javashader.ShadedClassTesting;
 import walkingkooka.predicate.Predicates;
-import walkingkooka.reflect.ClassTesting;
-import walkingkooka.reflect.JavaVisibility;
 import walkingkooka.reflect.PackageName;
 
 import java.lang.reflect.Constructor;
