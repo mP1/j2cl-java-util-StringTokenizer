@@ -55,8 +55,8 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
         }
 
         this.checkEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
-        assertThrows(NoSuchElementException.class, () -> jre.nextToken());
-        assertThrows(NoSuchElementException.class, () -> emul.nextToken());
+        assertThrows(NoSuchElementException.class, jre::nextToken);
+        assertThrows(NoSuchElementException.class, emul::nextToken);
     }
 
     @Test
@@ -73,8 +73,8 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
         }
 
         this.checkEquals(jre.hasMoreTokens(), emul.hasMoreTokens());
-        assertThrows(NoSuchElementException.class, () -> jre.nextElement());
-        assertThrows(NoSuchElementException.class, () -> emul.nextElement());
+        assertThrows(NoSuchElementException.class, jre::nextElement);
+        assertThrows(NoSuchElementException.class, emul::nextElement);
     }
 
     // ClassTesting.....................................................................................................
