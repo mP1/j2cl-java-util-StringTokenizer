@@ -87,7 +87,7 @@ public final class StringTokenizerTest implements ShadedClassTesting<StringToken
     // ShadedClassTesting................................................................................................
 
     @Override
-    public Predicate<Constructor> requiredConstructors() {
+    public Predicate<Constructor<?>> requiredConstructors() {
         return Predicates.always();
     }
 
