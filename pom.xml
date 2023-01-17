@@ -174,6 +174,68 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>create-j2cl-java-util-StringTokenizer-jar/temp</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>temp</classifier>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>walkingkooka</groupId>
+                <artifactId>walkingkooka-gwt-archive-maker-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>make gwt-java-util-StringTokenizer JAR</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <input>target/j2cl-java-util-StringTokenizer-1.0-SNAPSHOT-temp.jar</input>
+                            <output>target/gwt-java-util-StringTokenizer-1.0-SNAPSHOT.jar</output>
+                            <pom-file>gwt-pom.xml</pom-file>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>install gwt-java-util-StringTokenizer</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>walkingkooka</groupId>
+                            <artifactId>gwt-java-util-StringTokenizer</artifactId>
+                            <version>1.0-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>target/gwt-java-util-StringTokenizer-1.0-SNAPSHOT.jar</file>
+                            <localRepositoryPath>${project.build.directory}/it-repo</localRepositoryPath>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-invoker-plugin</artifactId>
@@ -254,6 +316,30 @@
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>deploy walkingkooka:gwt-java-util-StringTokenizer</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>deploy-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>walkingkooka</groupId>
+                            <artifactId>gwt-java-util-StringTokenizer</artifactId>
+                            <version>1.0-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>target/gwt-java-util-StringTokenizer-1.0-SNAPSHOT.jar</file>
+                            <url>https://maven-repo-254709.appspot.com</url>
+                            <repositoryId>github-mp1-appengine-repo</repositoryId>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
