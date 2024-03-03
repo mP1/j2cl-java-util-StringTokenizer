@@ -18,6 +18,5 @@
 
 <module>
   <inherits name="walkingkooka.Walkingkooka"/>
-  <source />
   <super-source path="super"/>
 </module>
