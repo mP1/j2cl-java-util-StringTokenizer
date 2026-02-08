@@ -6,8 +6,6 @@
 ![](https://tokei.rs/b1/github/mP1/j2cl-java-util-StringTokenizer)
 [![J2CL compatible](https://img.shields.io/badge/J2CL-compatible-brightgreen.svg)](https://github.com/mP1/j2cl-central)
 
-
-
 # java.util.StringTokenizer for j2cl
 
 A complete StringTokenizer supporting all methods and features, taken from [Apache Harmony project](https://github.com/apache/harmony/blob/trunk/classlib/modules/luni/src/main/java/java/util/StringTokenizer.java)
